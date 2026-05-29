@@ -33,19 +33,51 @@ streamlit run app.py
 
 The app will open in your browser at `http://localhost:8501`.
 
-### 3. Using Real AI Insights (Optional)
+### If the app fails to load ("Failed to load")
 
-The dashboard works great with rule-based insights out of the box.
+1. Run the diagnostic script:
+   ```powershell
+   .\diagnose.bat
+   ```
 
-For LLM-powered insights:
+2. Make sure you're using the easier launcher:
+   ```powershell
+   .\start-app.bat
+   ```
 
-1. Get an API key from [xAI (Grok)](https://x.ai/api) or OpenAI
-2. Set it in the sidebar or create a `.env` file:
+3. Common fixes:
+   - Close any other Streamlit windows first
+   - Try a different port: `streamlit run app.py --server.port 8502`
+   - Restart your terminal completely
+   - Reinstall dependencies: `pip install -r requirements.txt --force-reinstall`
 
-```env
-AI_PROVIDER=xai          # or "openai"
-AI_API_KEY=your-key-here
-```
+## How to See the Latest Changes (Testing Guide)
+
+1. Run the app:
+   ```powershell
+   .\start-app.bat
+   ```
+
+2. Click **"Load Demo Season"**.
+
+3. Look for these new sections (they appear right at the top after the demo loads):
+   - **Coach / Scout Summary** — High-level takeaways and recommendations
+   - **Opponent Scouting Report** — Team tendencies + suggested game plan
+
+4. Scroll down to **Visualizations → 🎯 Spray Charts** tab to see the new hit location visuals (using mock 2026 Mariners data).
+
+A blue info banner will appear at the top when using demo data to highlight what's new.
+
+### 3. Using Real AI Insights (Recommended)
+
+The dashboard works with smart rule-based insights by default.
+
+For much richer, coach-style analysis powered by **Grok**:
+
+1. Get a Grok API key at [https://x.ai/api](https://x.ai/api)
+2. Paste it into the **"Grok API Key (xAI)"** field in the sidebar.
+
+When a valid key is present, the Smart Insights section will automatically use Grok instead of the rule-based system. The tone is designed to sound like a real coach with data awareness.
 
 ## GameChanger Export Tips
 
@@ -57,12 +89,16 @@ There's a sample file at `sample_data/sample_gamechanger_export.csv` you can use
 
 ## Roadmap
 
-- [ ] Robust GameChanger parser for hitting + pitching
-- [ ] Multi-file upload + date filtering
-- [ ] Player comparison tools
-- [ ] Real LLM insights (Grok / OpenAI)
-- [ ] Exportable reports
-- [ ] Pitching / Fielding analysis sections
+- [x] Real LLM insights using Grok (xAI)
+- [x] Spray Charts (hit location visualization) - currently uses mock MLB data
+- [x] Strong Coach / Scout Summary (high-value "money view")
+- [x] Opponent Scouting Report with game-planning angles
+- [ ] Pitching analysis section
+- [ ] Player deep-dive profiles
+- [ ] Robust support for real GameChanger export formats
+- [ ] Natural language questions ("How has our cleanup hitter done lately?")
+- [ ] Exportable PDF reports
+- [ ] Multi-season support
 
 ---
 
